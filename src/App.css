@@ -80,8 +80,7 @@
   letter-spacing: -0.5px;
 }
 
-.navbar-logo::before {
-  content: '❤️‍🩹';
+.logo-icon {
   font-size: 1.8rem;
   filter: drop-shadow(0 0 8px var(--red-glow));
 }

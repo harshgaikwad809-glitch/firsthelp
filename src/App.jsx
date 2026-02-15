@@ -27,7 +27,10 @@ function App() {
     <div className="landing-page">
       {/* Navbar */}
       <nav className="navbar">
-        <div className="navbar-logo">FirstHelp</div>
+        <div className="navbar-logo">
+          <span className="logo-icon">🏥</span>
+          FirstHelp
+        </div>
 
         <div className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>
           <button
