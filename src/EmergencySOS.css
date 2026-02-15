@@ -1,0 +1,494 @@
+/* =========================================
+   EMERGENCY SOS OVERLAY
+   ========================================= */
+
+.sos-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    animation: overlay-fade-in 0.3s ease;
+}
+
+.sos-modal {
+    background: white;
+    border-radius: 32px;
+    padding: 48px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 30px 100px rgba(230, 57, 70, 0.5);
+    animation: modal-slide-up 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 4px solid var(--primary-red);
+}
+
+/* =========================================
+   COUNTDOWN SCREEN
+   ========================================= */
+
+.sos-countdown {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.countdown-circle {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-red) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 20px rgba(230, 57, 70, 0.2),
+        0 0 0 40px rgba(230, 57, 70, 0.1);
+    animation: countdown-pulse 1s infinite;
+}
+
+@keyframes countdown-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 20px rgba(230, 57, 70, 0.3),
+            0 0 0 40px rgba(230, 57, 70, 0.15);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 25px rgba(230, 57, 70, 0.2),
+            0 0 0 50px rgba(230, 57, 70, 0.1);
+    }
+}
+
+.countdown-number {
+    font-size: 6rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+}
+
+.sos-countdown h2 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: var(--dark-text);
+}
+
+.countdown-message {
+    font-size: 1.2rem;
+    color: var(--body-text);
+    margin-bottom: 32px;
+}
+
+.cancel-btn {
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: 3px solid var(--primary-red);
+    background: white;
+    color: var(--primary-red);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: var(--primary-red);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   ACTIVE SOS SCREEN
+   ========================================= */
+
+.sos-active {
+    position: relative;
+}
+
+.sos-close-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--dark-text);
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.sos-close-btn:hover {
+    background: var(--primary-red);
+    transform: rotate(90deg);
+}
+
+.sos-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 3px solid var(--light-gray);
+}
+
+.sos-pulse {
+    font-size: 5rem;
+    margin-bottom: 16px;
+    animation: sos-pulse-animation 1s infinite;
+    display: inline-block;
+}
+
+@keyframes sos-pulse-animation {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.sos-header h2 {
+    font-size: 2.2rem;
+    color: var(--primary-red);
+    margin-bottom: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.sos-status {
+    font-size: 1.1rem;
+    color: var(--body-text);
+    font-weight: 600;
+}
+
+.auto-send-notice {
+    margin-top: 16px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    border: 2px solid #4CAF50;
+    border-radius: 12px;
+    color: #2E7D32;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: slide-in-down 0.5s ease;
+}
+
+@keyframes slide-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   SOS ACTIONS
+   ========================================= */
+
+.sos-actions {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.sos-action-btn {
+    padding: 20px 24px;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+}
+
+.sos-action-btn.primary {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-red) 100%);
+    color: white;
+    box-shadow: 0 8px 30px rgba(230, 57, 70, 0.4);
+    font-size: 1.3rem;
+    padding: 24px;
+}
+
+.sos-action-btn.primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(230, 57, 70, 0.6);
+}
+
+.sos-action-btn.secondary {
+    background: white;
+    color: var(--primary-red);
+    border: 2px solid var(--primary-red);
+}
+
+.sos-action-btn.secondary:hover {
+    background: var(--primary-red);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.3);
+}
+
+.sos-action-btn.tertiary {
+    background: var(--off-white);
+    color: var(--dark-text);
+    border: 2px solid var(--light-gray);
+}
+
+.sos-action-btn.tertiary:hover {
+    background: var(--dark-text);
+    color: white;
+    border-color: var(--dark-text);
+    transform: translateY(-2px);
+}
+
+.action-icon {
+    font-size: 1.8rem;
+}
+
+.action-label {
+    flex: 1;
+    text-align: left;
+}
+
+/* =========================================
+   USER INFO CARD
+   ========================================= */
+
+.user-info-card {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    border: 2px solid #2196F3;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.user-info-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    color: var(--dark-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--body-text);
+    font-size: 0.95rem;
+}
+
+.info-value {
+    font-weight: 700;
+    color: var(--dark-text);
+    font-size: 1.05rem;
+}
+
+/* =========================================
+   LOCATION INFO
+   ========================================= */
+
+.location-info {
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    border: 2px solid #4CAF50;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.location-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2E7D32;
+    margin-bottom: 8px;
+}
+
+.location-coords {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: #1B5E20;
+    font-weight: 600;
+}
+
+/* =========================================
+   SOS INSTRUCTIONS
+   ========================================= */
+
+.sos-instructions {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    border: 2px solid #FF9800;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.sos-instructions h4 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: var(--dark-text);
+}
+
+.sos-instructions ul {
+    margin: 0;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sos-instructions li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--dark-text);
+}
+
+/* =========================================
+   FLOATING SOS BUTTON
+   ========================================= */
+
+.floating-sos-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-red) 100%);
+    color: white;
+    font-size: 2rem;
+    border: 4px solid white;
+    box-shadow: 0 8px 30px rgba(230, 57, 70, 0.5);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float-pulse 2s infinite;
+}
+
+@keyframes float-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 8px 30px rgba(230, 57, 70, 0.5);
+    }
+
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 12px 40px rgba(230, 57, 70, 0.7);
+    }
+}
+
+.floating-sos-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 50px rgba(230, 57, 70, 0.8);
+}
+
+.floating-sos-btn:active {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 640px) {
+    .sos-modal {
+        padding: 32px 24px;
+        border-radius: 24px;
+    }
+
+    .countdown-circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .countdown-number {
+        font-size: 4rem;
+    }
+
+    .sos-countdown h2 {
+        font-size: 1.5rem;
+    }
+
+    .sos-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .sos-pulse {
+        font-size: 3.5rem;
+    }
+
+    .sos-action-btn {
+        padding: 16px 20px;
+        font-size: 1rem;
+    }
+
+    .sos-action-btn.primary {
+        font-size: 1.1rem;
+        padding: 20px;
+    }
+
+    .action-icon {
+        font-size: 1.5rem;
+    }
+
+    .floating-sos-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.8rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
